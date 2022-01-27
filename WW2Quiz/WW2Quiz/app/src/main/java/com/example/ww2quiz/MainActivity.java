@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    //This class is for the home screen and it allows for the user to begin the quiz once they clicked the button.
+
     private Button buttonOpenQZ;
 
     @Override

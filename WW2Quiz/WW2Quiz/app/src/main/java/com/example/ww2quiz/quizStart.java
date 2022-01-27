@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class quizStart extends AppCompatActivity {
+
+     //This class outputs the question on screen, checks if they're correct, shows next question, updates score, timer and also colour codes answer when result submitted.
+
     private List<QuestionList> questionLst;
     private TextView tQuestion, tScore, tQuestionNo, tTimer;
     private RadioGroup rdGroup;
@@ -40,6 +43,7 @@ public class quizStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_start);
 
+        //Creates new list via the arraylist class.
         questionLst = new ArrayList<>();
         tQuestion = findViewById(R.id.question);
         tScore = findViewById(R.id.score);
@@ -58,6 +62,7 @@ public class quizStart extends AppCompatActivity {
         totalQuestion = questionLst.size();
         showNxtQuestion();
 
+        // This checks whether or not you have picked an option before clicking submit, an alert box appears telling you to do so.
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +80,7 @@ public class quizStart extends AppCompatActivity {
         });
     }
 
+    //This method checks the answer and increments the score if you're correct. Also colour codes the wrong and correct answer once you click submit.
     private void checkAnsw() {
         answered = true;
         RadioButton rbSelected = findViewById(rdGroup.getCheckedRadioButtonId());
@@ -108,6 +114,7 @@ public class quizStart extends AppCompatActivity {
         }
     }
 
+    // This method changes the textview of the question and option to the next on in the list while also updating the display on what question you're on.
     private void showNxtQuestion() {
         rdGroup.clearCheck();
         r1.setTextColor(dfRBColor);
@@ -132,6 +139,7 @@ public class quizStart extends AppCompatActivity {
         }
     }
 
+    //This method initialise the timer, setting it to 20 seconds and going down 1 second per tick. If the timer finishes, next question is displayed. 
     private void timer() {
         countDwnTimer = new CountDownTimer(20000, 1000){
             @Override
@@ -146,11 +154,11 @@ public class quizStart extends AppCompatActivity {
         }.start();
     }
 
+    //This method add's a new list onto the variable with the paramters for the question, it's options and the correct answer.
     private void addQuestion(){
         questionLst.add(new QuestionList("What was the name of the German operation of the invasion of the Soviet Union?", "Herkules", "Barbarossa", "Blau", "Zitadelle ", 2));
         questionLst.add(new QuestionList("When did WW2 Begin?", "1915", "1936", "1939", "1946 ", 3));
         questionLst.add(new QuestionList("When did WW2 End?", "1917", "1938", "1942", "1945 ", 4));
-
         questionLst.add(new QuestionList("What was the name of the major allied landing on the coast of France during 1944?", "Normandy landings", "Red Landing", "Dusk landing", "Camarague", 1));
         questionLst.add(new QuestionList("Who was the leader of the Soviet Union during WW2?", "Stalin", "Lenin", "Khrushchev", "Trotsky", 1));
         questionLst.add(new QuestionList("Who was the leader of Nazi Germany?", "Otto Moritz", "Hermann Goering", "Adolf Hitler", "Erich Raeder", 3));
